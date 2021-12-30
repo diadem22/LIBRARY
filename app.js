@@ -1,16 +1,18 @@
 const express = require ('express')
-const libapp = express()
+const app = express()
 let { books } = require ('./booksdata')
 
 
-libapp.use(express.urlencoded({ extended: false }))
+app.use(express.urlencoded({ extended: false }))
 
-libapp.use(express.json())
+app.use(express.json())
 
-libapp.get('/api/books', (req, res) => {
+app.get('/api/books', (req, res) => {
   res.status(200).json({ success: true, data: books })
 })
-
+app.get('/api/books/:id', (req, res) => {
+  res.status(200).json({ success: true, data: id })
+})
 app.post('/api/postman/books', (req, res) => {
   const { name } = req.body
   if (!name) {
@@ -29,7 +31,7 @@ app.put('/api/books/:id', (req, res) => {
   if (!title) {
     return res.status(404).json({ success: false, msg: `The book with id ${id} is currently not available` })
   }
-  const newBook = book.map((title) => {
+  const newBook = books.map((title) => {
     if (title.id === Number(id)) {
       title.name = name
      
@@ -44,7 +46,7 @@ app.delete('/api/books/:id', (req, res) => {
   if (!title) {
     return res.status(404).json({ success: false, msg: `The book with id is currently not available ${req.params.id}` })
   }
-  const newBook = book.filter(
+  const newBook = books.filter(
     (title) => title.id !== Number(req.params.id)
   )
   return res.status(200).json({ success: true, data: newBook })
