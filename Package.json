@@ -2,9 +2,9 @@
     "name": "LIBRARY",
     "version": "1.0.0",
     "description": "",
-    "main": "libapp.js",
+    "main": "app.js",
     "scripts": {
-      "start": "nodemon libapp.js"
+      "start": "nodemon app.js"
     },
     "keywords": [],
     "author": "",
